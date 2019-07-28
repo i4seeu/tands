@@ -15,10 +15,17 @@
         @if (Auth::check())
 
         <!-- if user has 'administrator' or 'guest' role assigned to them. -->
-
         @if (Auth::user()->hasRole("Member") || Auth::user()->hasRole("System Administrator"))
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{route('home')}}">
+            <i class="material-icons">add</i>
+            <p>New Requisition</p>
+          </a>
+        </li>
+        @endif
+        @if (Auth::user()->hasRole("Member") || Auth::user()->hasRole("System Administrator"))
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('home')}}">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
           </a>

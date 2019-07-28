@@ -24,5 +24,4 @@ Route::prefix('users')->group(function(){
   Route::get('/{id}', 'UserController@show')->name('users.show');
   Route::get('/{id}/edit', 'UserController@edit')->name('users.edit');
   Route::delete('/{id}', 'UserController@destroy')->name('users.destroy');
-  Route::post('/{id}/change_password', 'UserController@change_password')->name('users.change_password');
 });
