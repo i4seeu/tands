@@ -20,6 +20,20 @@
           </div>
           <div class="card-body">
             {!! Form::open(['route' => 'users.store', 'autocomplete' => 'off']) !!}
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('first_name', 'First Name',['class' => 'bmd-label-floating']) !!}
+                    {!! Form::text('first_name', null, ['class' => 'form-control','required' => 'required']) !!}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('last_name', 'Last Name',['class' => 'bmd-label-floating']) !!}
+                    {!! Form::text('last_name', null, ['class' => 'form-control','required' => 'required']) !!}
+                </div>
+              </div>
+            </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -51,66 +65,11 @@
                 </div>
               </div>
               <div class="row">
+
                 <div class="col-md-6">
                   <div class="form-group">
-                      {!! Form::label('first_name', 'First Name',['class' => 'bmd-label-floating']) !!}
-                      {!! Form::text('first_name', null, ['class' => 'form-control','required' => 'required']) !!}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                      {!! Form::label('last_name', 'Last Name',['class' => 'bmd-label-floating']) !!}
-                      {!! Form::text('last_name', null, ['class' => 'form-control','required' => 'required']) !!}
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                      {!! Form::label('title', 'Title',['class' => 'bmd-label-floating']) !!}
-                      {!! Form::select('title', ['Mr' => 'Mr', 'Mrs' => 'Mrs','Ms' => 'Ms', 'Dr' => 'Dr','Prof' => 'Prof', 'Other' => 'Other'], null, ['class'=>'form-control','required' => 'required', 'placeholder' => ' - Please select - ']) !!}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                      {!! Form::label('gender', 'Gender',['class' => 'bmd-label-floating']) !!}
-                      {!! Form::select('gender', ['Male' => 'Male', 'Female' => 'Female'], null, ['class'=>'form-control','required' => 'required', 'placeholder' => ' - Please select - ']) !!}
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                      {!! Form::label('institution', 'Institution',['class' => 'bmd-label-floating']) !!}
-                      {!! Form::text('institution', null, ['class' => 'form-control','required' => 'required']) !!}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                      {!! Form::label('position', 'Position',['class' => 'bmd-label-floating']) !!}
-                      {!! Form::text('position', null, ['class' => 'form-control','required' => 'required']) !!}
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                      {!! Form::label('speciality', 'Speciality',['class' => 'bmd-label-floating']) !!}
-                      {!! Form::text('speciality', null, ['class' => 'form-control','required' => 'required']) !!}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                      {!! Form::label('phone_number', 'Phone Number',['class' => 'bmd-label-floating']) !!}
-                      {!! Form::text('phone_number', null, ['class' => 'form-control','required' => 'required']) !!}
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                      {!! Form::label('address', 'Address',['class' => 'bmd-label-floating']) !!}
-                      {!! Form::text('address', null, ['class' => 'form-control','required' => 'required']) !!}
+                      {!! Form::label('department_id', 'Department',['class' => 'bmd-label-floating']) !!}
+                      {!! Form::select('department_id',$departments,null, ['class' => 'form-control','required' => 'required', 'placeholder' => ' - Please select - ']) !!}
                   </div>
                 </div>
               </div>

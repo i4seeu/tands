@@ -16,15 +16,13 @@
             @if(auth()->user()->id)
             <button class="btn btn-secondary" data-item="{{ route('users.destroy', $user->id) }}" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></button>
             @endif
-            <h6 class="card-category text-gray">{{$user->applicant->title }} {{$user->applicant->first_name}}  {{$user->applicant->last_name}}</h6>
-
-            <h4 class="card-title">{{$user->applicant->gender}}</h4>
+            <h6 class="card-category text-gray">{{$user->first_name}}  {{$user->last_name}}</h6>
             <p class="card-description">
-              <b>Email :</b> {{$user->email}} |   <b>Institution :</b> {{$user->applicant->institution}} | <b>Phone Number :</b> {{$user->applicant->phone_number}}
+              <b>Email :</b> {{$user->email}} |   <b>Department :</b> {{$user->department->name}}
             </p>
             <p class="card-description">
-              <b>Position :</b> {{$user->applicant->position}} |   <b>Speciality :</b> {{$user->applicant->speciality}}<br>
-              <b>Address :</b> {{$user->applicant->address}}
+              <b>Role :</b> {{$user->roles->first->name->name}} 
+
             </p>
             <button class="btn btn-primary col-md-1" onclick = window.history.back();>Back</button>
 

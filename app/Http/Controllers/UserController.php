@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
-use App\Applicant;
-use App\ParticipantCategory;
+use App\Department;
+
 class UserController extends Controller
 {
 
@@ -38,10 +38,10 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-
+      $request->user()->authorizeRoles(['System Administrator']);
       $roles = Role::pluck('name', 'id');
-      $categories = ParticipantCategory::pluck('name', 'id');
-      return view('users.create',compact('roles','categories'));
+      $departments = Department::pluck('name', 'id');
+      return view('users.create',compact('roles','departments'));
     }
 
     /**
@@ -61,22 +61,14 @@ class UserController extends Controller
        $user = User::create([
          'name'     => $request['name'],
          'email'    => $request['email'],
+         'first_name'     => $request['first_name'],
+         'last_name'    => $request['last_name'],
          'password' => bcrypt($request['password']),
-         'role_id' => $request['role_id'],
+         'department_id' => $request['department_id'],
        ]);
-      $applicant = Applicant::create([
-      'first_name' => $request['first_name'],
-      'last_name' => $request['last_name'],
-      'institution' => $request['institution'],
-      'speciality' => $request['speciality'],
-      'address' => $request['address'],
-      'position' => $request['position'],
-      'title' => $request['title'],
-      'gender' => $request['gender'],
-      'user_id' => $user->id,
-      'phone_number' => $request['phone_number'],
-    ]);
-    return redirect()->route('users');
+       $role = Role::where('id', $request['role_id'])->first();
+       $user->roles()->attach($role);
+       return redirect()->route('users');
  }
 
 
@@ -100,10 +92,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-      $roles = Role::pluck('name', 'id');
-      $categories = ParticipantCategory::pluck('name', 'id');
       $user = User::findOrFail($id);
-      return view('users.edit', compact('user','roles','categories')) ;
+      $roles = Role::pluck('name', 'id');
+      $departments = Department::pluck('name', 'id');
+      return view('users.edit', compact('user','roles','departments')) ;
     }
 
     /**
@@ -118,20 +110,12 @@ class UserController extends Controller
       User::findOrFail($id)->update([
         'name'     => $request['name'],
         'email'    => $request['email'],
-        'password' => bcrypt($request['password']),
-        'role_id' => $request['role_id'],
+        'first_name'     => $request['first_name'],
+        'last_name'    => $request['last_name'],
+        'department_id' => $request['department_id'],
       ]);
-      Applicant::where('user_id',$id)->update([
-      'first_name' => $request['first_name'],
-      'last_name' => $request['last_name'],
-      'institution' => $request['institution'],
-      'speciality' => $request['speciality'],
-      'address' => $request['address'],
-      'position' => $request['position'],
-      'title' => $request['title'],
-      'gender' => $request['gender'],
-      'phone_number' => $request['phone_number'],
-      ]);
+      $user = User::findOrFail($id);
+      $user->roles()->sync($request['role_id']);
       return redirect()->route('users');
     }
 
