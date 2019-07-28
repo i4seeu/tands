@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','first_name','last_name', 'department_id',
     ];
 
     /**
@@ -92,5 +92,9 @@ class User extends Authenticatable
 
     return null !== $this->roles()->where('name', $role)->first();
 
+    }
+    public function department()
+    {
+       return $this->belongsTo(Department::class);
     }
 }

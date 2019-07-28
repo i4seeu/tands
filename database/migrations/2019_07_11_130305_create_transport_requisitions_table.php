@@ -22,7 +22,7 @@ class CreateTransportRequisitionsTable extends Migration
             $table->unSignedBigInteger('no_passengers');
             $table->date('date_required');
             $table->time('time_out');
-            $table->time('time_back');
+            $table->date('time_back');
             $table->unSignedBigInteger('current_stage')->default(1);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
