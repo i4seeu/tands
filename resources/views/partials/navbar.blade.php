@@ -27,7 +27,7 @@
       <!-- if user has 'administrator' role assigned to them. -->
         @if (Auth::user()->hasRole("System Administrator"))
         <li class="nav-item ">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{route('users')}}">
             <i class="material-icons">people</i>
             <p>User Management</p>
           </a>

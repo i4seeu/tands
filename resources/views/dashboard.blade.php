@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="{{asset('css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
+    <link href="{{asset('plugins/DataTables/datatables.min.css')}}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{asset('demo/demo.css')}}" rel="stylesheet" />
 </head>
@@ -66,6 +67,8 @@
     <script src="{{asset('js/material-dashboard.js?v=2.1.1')}}" type="text/javascript"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{asset('demo/demo.js')}}"></script>
+    <script src="{{asset('plugins/DataTables/datatables.min.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
     <script>
       $(document).ready(function() {
         $().ready(function() {
