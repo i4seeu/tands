@@ -25,3 +25,8 @@ Route::prefix('users')->group(function(){
   Route::get('/{id}/edit', 'UserController@edit')->name('users.edit');
   Route::delete('/{id}', 'UserController@destroy')->name('users.destroy');
 });
+Route::prefix('requisitions')->group(function(){
+  Route::get('/', 'RequisitionController@index')->name('requisitions');
+  Route::get('create', 'RequisitionController@create')->name('requisitions.create');
+  Route::post('store', 'RequisitionController@store')->name('requisitions.store');
+});

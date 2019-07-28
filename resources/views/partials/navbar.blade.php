@@ -15,16 +15,6 @@
         @if (Auth::check())
 
         <!-- if user has 'administrator' or 'guest' role assigned to them. -->
-
-
-        @if (Auth::user()->hasRole("Member") || Auth::user()->hasRole("Head of Department"))
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="material-icons">add</i>
-            <p>New Requisition</p>
-          </a>
-        </li>
-        @endif
         @if (Auth::user()->hasRole("Head of Department") || Auth::user()->hasRole("Finance Officer") || Auth::user()->hasRole("HR Officer") || Auth::user()->hasRole("Transport Officer"))
         <li class="nav-item">
           <a class="nav-link" href="{{route('home')}}">
@@ -54,25 +44,19 @@
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{route('requisitions')}}">
             <i class="material-icons">inbox</i>
-            <p>Requisitions</p>
-          </a>
-        </li>
-        @endif
-        @if (Auth::user()->hasRole("System Administrator"))
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('home')}}">
-            <i class="material-icons">dashboard</i>
-            <p>Dashboard</p>
+            <p>Transport Requisitions</p>
           </a>
         </li>
         <li class="nav-item ">
           <a class="nav-link" href="#">
             <i class="material-icons">inbox</i>
-            <p>Requisitions</p>
+            <p>Subsistence Requisitions</p>
           </a>
         </li>
+        @endif
+        @if (Auth::user()->hasRole("System Administrator"))
         <li class="nav-item ">
           <a class="nav-link" href="{{route('users')}}">
             <i class="material-icons">people</i>
