@@ -97,4 +97,9 @@ class User extends Authenticatable
     {
        return $this->belongsTo(Department::class);
     }
+    public function transportRequisitions()
+    {
+
+        return $this->hasMany('App\TransportRequisition');
+    }
 }

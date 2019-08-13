@@ -15,6 +15,12 @@ $('#deleteModal').on('show.bs.modal', function (event) {
   var modal = $(this)
   modal.find('.modal-footer #deleteForm').attr("action", item)
 });
+$('#approveModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var item = button.data('item') // Item id
+  var modal = $(this)
+  modal.find('.modal-footer #approveForm').attr("action", item)
+});
 $(document).ready( function () {
     $('#table_id').DataTable({
       "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],

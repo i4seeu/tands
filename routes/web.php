@@ -28,5 +28,11 @@ Route::prefix('users')->group(function(){
 Route::prefix('requisitions')->group(function(){
   Route::get('/', 'RequisitionController@index')->name('requisitions');
   Route::get('create', 'RequisitionController@create')->name('requisitions.create');
+  Route::get('/{id}/edit', 'RequisitionController@edit')->name('requisitions.edit');
+  Route::patch('/{id}/update', 'RequisitionController@update')->name('requisitions.update');
   Route::post('store', 'RequisitionController@store')->name('requisitions.store');
+  Route::get('inbox', 'TransportRequisitionController@inbox')->name('requisitions.inbox');
+  Route::get('outbox', 'TransportRequisitionController@outbox')->name('requisitions.outbox');
+  Route::post('approve/{id}', 'TransportRequisitionController@approve')->name('requisitions.approve');
+  Route::delete('/{id}', 'TransportRequisitionController@destroy')->name('requisitions.destroy');
 });

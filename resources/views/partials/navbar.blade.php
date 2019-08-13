@@ -22,18 +22,20 @@
             <p>Dashboard</p>
           </a>
         </li>
+        @if (Auth::user()->hasRole('Head of Department') || Auth::user()->hasRole('Transport Officer'))
         <li class="nav-item ">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{route('requisitions.inbox')}}">
             <i class="material-icons">inbox</i>
-            <p>Inbox</p>
+            <p>Transport Inbox</p>
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{route('requisitions.outbox')}}">
             <i class="material-icons">playlist_add_check</i>
-            <p>Outbox</p>
+            <p>Transport Outbox</p>
           </a>
         </li>
+        @endif
         @endif
       <!-- if user has 'administrator' role assigned to them. -->
         @if (Auth::user()->hasRole("System Administrator") || Auth::user()->hasRole("Member"))
