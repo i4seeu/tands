@@ -15,6 +15,7 @@
       <thead>
           <tr>
               <th>Requisition Number</th>
+              <th>Employee</th>
               <th>Department</th>
               <th>Phone Number</th>
               <th>Description</th>
@@ -31,6 +32,7 @@
         @foreach($requisitions as $requisition)
           <tr>
               <td>{{$requisition->id }}</td>
+              <td>{{$requisition->user->first_name }} {{$requisition->user->last_name }}</td>
               <td>{{$requisition->user->department->name }}</td>
               <td>{{$requisition->contact_no }}</td>
               <td>{{$requisition->description }}</td>
