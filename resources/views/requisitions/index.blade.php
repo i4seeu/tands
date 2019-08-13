@@ -7,7 +7,9 @@
     <div class="row">
        <div class="col-md-12">
            <div class="pull-right">
+             @if(!(auth()->user()->hasRole('System Administrator')))
               <a href="{{route('requisitions.create')}}" class="btn btn-primary"> New Requisition</a>
+             @endif
            </div>
        </div>
     </div>
