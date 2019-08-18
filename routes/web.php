@@ -39,4 +39,8 @@ Route::prefix('requisitions')->group(function(){
 Route::prefix('subsistencerequisitions')->group(function(){
   Route::get('/', 'SubsistenceRequisitionController@index')->name('subsistencerequisitions');
   Route::get('create', 'SubsistenceRequisitionController@create')->name('subsistencerequisitions.create');
+  Route::post('store', 'SubsistenceRequisitionController@store')->name('subsistencerequisitions.store');
+  Route::get('/{id}/edit', 'SubsistenceRequisitionController@edit')->name('subsistencerequisitions.edit');
+  Route::patch('/{id}/update', 'SubsistenceRequisitionController@update')->name('subsistencerequisitions.update');
+  Route::delete('/{id}', 'SubsistenceRequisitionController@destroy')->name('subsistencerequisitions.destroy');
 });

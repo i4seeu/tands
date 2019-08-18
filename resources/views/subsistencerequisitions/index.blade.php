@@ -8,7 +8,7 @@
        <div class="col-md-12">
            <div class="pull-right">
              @if(!(auth()->user()->hasRole('System Administrator')))
-              <a href="{{route('subsistencerequisitions.create')}}" class="btn btn-primary"> New Requisition</a>
+              <a href="{{route('subsistencerequisitions.create')}}" class="btn btn-primary"> New Subsistence</a>
              @endif
            </div>
        </div>

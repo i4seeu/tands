@@ -35,7 +35,7 @@ class SubsistenceRequisitionController extends Controller
      */
     public function create()
     {
-        //
+      return view('subsistencerequisitions.create');
     }
 
     /**
@@ -46,7 +46,16 @@ class SubsistenceRequisitionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $user_id = Auth::user()->id;
+      $transport_requisition = SubsistenceRequisition::create([
+        'description'    => $request['description'],
+        'no_days'     => $request['no_days'],
+        'allowance_scale'    => $request['allowance_scale'],
+        'from_date' => $request['from_date'],
+        'to_date' => $request['to_date'],
+        'user_id'  => $user_id,
+      ]);
+      return redirect()->route('subsistencerequisitions');
     }
 
     /**
@@ -66,9 +75,10 @@ class SubsistenceRequisitionController extends Controller
      * @param  \App\SubsistenceRequisition  $subsistenceRequisition
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubsistenceRequisition $subsistenceRequisition)
+    public function edit($id)
     {
-        //
+      $requisition =SubsistenceRequisition::findOrFail($id);
+      return view('subsistencerequisitions.edit', compact('requisition')) ;
     }
 
     /**
@@ -78,9 +88,16 @@ class SubsistenceRequisitionController extends Controller
      * @param  \App\SubsistenceRequisition  $subsistenceRequisition
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubsistenceRequisition $subsistenceRequisition)
+    public function update(Request $request, $id)
     {
-        //
+      SubsistenceRequisition::findOrFail($id)->update([
+        'description'    => $request['description'],
+        'no_days'     => $request['no_days'],
+        'allowance_scale'    => $request['allowance_scale'],
+        'from_date' => $request['from_date'],
+        'to_date' => $request['to_date'],
+      ]);
+      return redirect()->route('subsistencerequisitions');
     }
 
     /**
@@ -89,8 +106,9 @@ class SubsistenceRequisitionController extends Controller
      * @param  \App\SubsistenceRequisition  $subsistenceRequisition
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubsistenceRequisition $subsistenceRequisition)
+    public function destroy($id)
     {
-        //
+      SubsistenceRequisition::findOrFail($id)->delete();
+      return redirect()->route('subsistencerequisitions');
     }
 }
