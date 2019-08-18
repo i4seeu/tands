@@ -36,6 +36,20 @@
           </a>
         </li>
         @endif
+        @if (Auth::user()->hasRole('Head of Department') || Auth::user()->hasRole('HR Officer') || Auth::user()->hasRole('Finance Officer'))
+        <li class="nav-item ">
+          <a class="nav-link" href="{{route('subsistencerequisitions.inbox')}}">
+            <i class="material-icons">inbox</i>
+            <p>Subsistence Inbox</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="{{route('subsistencerequisitions.outbox')}}">
+            <i class="material-icons">playlist_add_check</i>
+            <p>Subsistence Outbox</p>
+          </a>
+        </li>
+        @endif
         @endif
       <!-- if user has 'administrator' role assigned to them. -->
         @if (Auth::user()->hasRole("System Administrator") || Auth::user()->hasRole("Member"))

@@ -44,7 +44,7 @@
               <td>Head of Department</td>
               @endif
               @if($requisition->current_stage ==2)
-              <td>Registrar</td>
+              <td>HR Officer</td>
               @endif
               @if($requisition->current_stage ==3)
               <td>Finance Officer</td>

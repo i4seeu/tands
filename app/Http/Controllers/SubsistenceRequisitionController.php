@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\SubsistenceRequisition;
 use Illuminate\Http\Request;
 use Auth;
+use App\User;
 class SubsistenceRequisitionController extends Controller
 {
     /**
@@ -110,5 +111,58 @@ class SubsistenceRequisitionController extends Controller
     {
       SubsistenceRequisition::findOrFail($id)->delete();
       return redirect()->route('subsistencerequisitions');
+    }
+    public function inbox(Request $request)
+    {
+        $request->user()->authorizeRoles(['Head of Department','HR Officer','Finance Officer']);
+        if (Auth::user()->hasRole('Head of Department'))
+        {
+            $department_id = Auth::user()->department_id;
+            $users = User::where('department_id',$department_id)->pluck('id');
+            $requisitions = SubsistenceRequisition::where('current_stage',1)->whereIn('user_id',$users)->get();
+            return view('subsistencerequisitions.inbox',compact('requisitions'));
+        }
+        else if(Auth::user()->hasRole('HR Officer'))
+        {
+            $requisitions = SubsistenceRequisition::where('current_stage',2)->get();
+            return view('subsistencerequisitions.inbox',compact('requisitions'));
+        }
+        else if(Auth::user()->hasRole('Finance Officer'))
+        {
+            $requisitions = SubsistenceRequisition::where('current_stage',3)->get();
+            return view('subsistencerequisitions.inbox',compact('requisitions'));
+        }
+
+    }
+    public function outbox(Request $request)
+    {
+       $request->user()->authorizeRoles(['Head of Department','HR Officer','Finance Officer']);
+       if (Auth::user()->hasRole('Head of Department'))
+       {
+           $department_id = Auth::user()->department_id;
+           $users = User::where('department_id',$department_id)->pluck('id');
+           $requisitions = SubsistenceRequisition::whereIn('current_stage',[2,3,4])->whereIn('user_id',$users)->get();
+           return view('subsistencerequisitions.outbox',compact('requisitions'));
+       }
+       else if(Auth::user()->hasRole('HR Officer'))
+       {
+           $requisitions = SubsistenceRequisition::whereIn('current_stage',[3,4])->get();
+           return view('subsistencerequisitions.outbox',compact('requisitions'));
+       }
+       else if(Auth::user()->hasRole('Finance Officer'))
+       {
+           $requisitions = SubsistenceRequisition::where('current_stage',4)->get();
+           return view('subsistencerequisitions.outbox',compact('requisitions'));
+       }
+    }
+    public function approve(Request $request,$id)
+    {
+      $request->user()->authorizeRoles(['Head of Department','HR Officer','Finance Officer']);
+      $requisition = SubsistenceRequisition::findOrFail($id);
+      $stage = $requisition->current_stage + 1;
+      SubsistenceRequisition::findOrFail($id)->update([
+        'current_stage' => $stage,
+      ]);
+      return redirect()->route('subsistencerequisitions.inbox');
     }
 }

@@ -43,4 +43,7 @@ Route::prefix('subsistencerequisitions')->group(function(){
   Route::get('/{id}/edit', 'SubsistenceRequisitionController@edit')->name('subsistencerequisitions.edit');
   Route::patch('/{id}/update', 'SubsistenceRequisitionController@update')->name('subsistencerequisitions.update');
   Route::delete('/{id}', 'SubsistenceRequisitionController@destroy')->name('subsistencerequisitions.destroy');
+  Route::get('inbox', 'SubsistenceRequisitionController@inbox')->name('subsistencerequisitions.inbox');
+  Route::get('outbox', 'SubsistenceRequisitionController@outbox')->name('subsistencerequisitions.outbox');
+  Route::post('approve/{id}', 'SubsistenceRequisitionController@approve')->name('subsistencerequisitions.approve');
 });
