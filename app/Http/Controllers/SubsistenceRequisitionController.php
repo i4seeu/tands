@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\SubsistenceRequisition;
 use Illuminate\Http\Request;
-
+use Auth;
 class SubsistenceRequisitionController extends Controller
 {
     /**
@@ -12,9 +12,20 @@ class SubsistenceRequisitionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+      $request->user()->authorizeRoles(['Member','System Administrator']);
+      if (Auth::user()->hasRole('Member'))
+      {
+          $requisitions = Auth::user()->subsistenceRequisitions()->get();
+      }
+      else if(Auth::user()->hasRole('System Administrator'))
+      {
+          $requisitions = SubsistenceRequisition::all();
+      }
+
+
+      return view('subsistencerequisitions.index',compact('requisitions'));
     }
 
     /**

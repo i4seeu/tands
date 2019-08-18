@@ -102,4 +102,9 @@ class User extends Authenticatable
 
         return $this->hasMany('App\TransportRequisition');
     }
+    public function subsistenceRequisitions()
+    {
+
+        return $this->hasMany('App\SubsistenceRequisition');
+    }
 }

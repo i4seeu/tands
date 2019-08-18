@@ -36,3 +36,7 @@ Route::prefix('requisitions')->group(function(){
   Route::post('approve/{id}', 'TransportRequisitionController@approve')->name('requisitions.approve');
   Route::delete('/{id}', 'TransportRequisitionController@destroy')->name('requisitions.destroy');
 });
+Route::prefix('subsistencerequisitions')->group(function(){
+  Route::get('/', 'SubsistenceRequisitionController@index')->name('subsistencerequisitions');
+  Route::get('create', 'SubsistenceRequisitionController@create')->name('subsistencerequisitions.create');
+});

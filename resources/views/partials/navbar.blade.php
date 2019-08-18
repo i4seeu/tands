@@ -52,7 +52,7 @@
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{route('subsistencerequisitions')}}">
             <i class="material-icons">inbox</i>
             <p>Subsistence Requisitions</p>
           </a>
