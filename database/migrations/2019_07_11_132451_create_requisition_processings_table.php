@@ -17,11 +17,10 @@ class CreateRequisitionProcessingsTable extends Migration
             $table->bigIncrements('id');
             $table->unSignedBigInteger('requisition_id');
             $table->unSignedBigInteger('requisition_type_id');
-            $table->unSignedBigInteger('requisition_stage_id');
-            $table->string('status');
-            $table->text('comment');
+            $table->unSignedBigInteger('requisition_stage');
+            $table->string('action');
+            $table->text('comment')->nullable();
             $table->unSignedBigInteger('user_id');
-            $table->foreign('requisition_stage_id')->references('id')->on('requisition_stages')->onDelete('cascade');
             $table->foreign('requisition_type_id')->references('id')->on('requisition_types')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

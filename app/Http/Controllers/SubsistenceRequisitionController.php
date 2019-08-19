@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\SubsistenceRequisition;
+use App\RequisitionProcessing;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
@@ -157,11 +158,67 @@ class SubsistenceRequisitionController extends Controller
     }
     public function approve(Request $request,$id)
     {
+
       $request->user()->authorizeRoles(['Head of Department','HR Officer','Finance Officer']);
       $requisition = SubsistenceRequisition::findOrFail($id);
+      //dd($request->comment);
       $stage = $requisition->current_stage + 1;
       SubsistenceRequisition::findOrFail($id)->update([
         'current_stage' => $stage,
+      ]);
+      $user_id = Auth::user()->id;
+      $stage = 1;
+      if (Auth::user()->hasRole('Head of Department')){
+          $stage = 2;
+      }
+      else if(Auth::user()->hasRole('HR Officer'))
+      {
+          $stage = 3;
+      }
+      else if(Auth::user()->hasRole('Finance Officer'))
+      {
+          $stage = 4;
+      }
+      RequisitionProcessing::create([
+        'comment'    => $request['comment'],
+        'requisition_id'     => $id,
+        'requisition_type_id'    => 2,
+        'action' => 'Approve',
+        'requisition_stage' => $stage,
+        'user_id'  => $user_id,
+      ]);
+      return redirect()->route('subsistencerequisitions.inbox');
+    }
+    public function disapprove(Request $request,$id)
+    {
+
+      $request->user()->authorizeRoles(['Head of Department','HR Officer','Finance Officer']);
+      $requisition = SubsistenceRequisition::findOrFail($id);
+      //dd($request->comment);
+      $stage = $requisition->current_stage - 1;
+      SubsistenceRequisition::findOrFail($id)->update([
+        'current_stage' => $stage,
+      ]);
+      $user_id = Auth::user()->id;
+      $stage = 1;
+      if (Auth::user()->hasRole('Head of Department')){
+          $stage = 2;
+      }
+      else if(Auth::user()->hasRole('HR Officer'))
+      {
+          $stage = 3;
+      }
+      else if(Auth::user()->hasRole('Finance Officer'))
+      {
+          $stage = 4;
+      }
+      RequisitionProcessing::create([
+        'comment'    => $request['comment'],
+        'requisition_id'     => $id,
+        'requisition_type_id'    => 2,
+        'action' => 'Returned',
+        'requisition_stage' => $stage,
+        'user_id'  => $user_id,
       ]);
       return redirect()->route('subsistencerequisitions.inbox');
     }

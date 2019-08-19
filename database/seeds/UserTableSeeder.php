@@ -24,15 +24,5 @@ class UserTableSeeder extends Seeder
       $admin->department_id = '1';
       $admin->save();
       $admin->roles()->attach($role_admin);
-
-      $guest = new User();
-      $guest->name = 'ptembo';
-      $guest->first_name ='Peter';
-      $guest->last_name = 'Tembo';
-      $guest->email = 'member@tands.mw';
-      $guest->password = bcrypt('password');
-      $guest->department_id = '4';
-      $guest->save();
-      $guest->roles()->attach($role_guest);
     }
 }
