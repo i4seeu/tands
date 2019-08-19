@@ -59,7 +59,7 @@
                   <button class="btn btn-sm btn-just-icon btn-secondary" data-item="{{ route('subsistencerequisitions.destroy', $requisition->id) }}" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></button>
                   @endif
                   @endif
-                  <a href="{{ route('subsistencerequisitions.show', $requisition->id) }}"><button class="btn btn-sm btn-just-icon btn-secondary"><i class="fa fa-eye"></i></button></a>
+                  
               </td>
           </tr>
         @endforeach
