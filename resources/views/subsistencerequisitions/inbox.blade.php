@@ -49,9 +49,16 @@
               <td class="right">
                   <a href="#"><button class="btn btn-sm btn-just-icon btn-secondary" data-item="{{ route('subsistencerequisitions.approve', $requisition->id) }}" data-toggle="modal" data-target="#approveModal"><i class="fa fa-check"></i></button></a>
               </td>
+              @if (Auth::user()->hasRole("Head of Department"))
+                <td class="right">
+                <a href="{{ route('subsistencerequisitions.edit', $requisition->id) }}"><button class="btn btn-sm btn-just-icon btn-secondary"><i class="fa fa-edit"></i></button></a>
+                </td>
+              @endif
+              @if (!Auth::user()->hasRole("Head of Department"))
               <td class="right">
                   <a href="#"><button class="btn btn-sm btn-just-icon btn-secondary" data-item="{{ route('subsistencerequisitions.disapprove', $requisition->id) }}" data-toggle="modal" data-target="#disapproveModal"><i class="fa fa-close"></i></button></a>
               </td>
+              @endif
           </tr>
         @endforeach
       </tbody>

@@ -99,6 +99,10 @@ class SubsistenceRequisitionController extends Controller
         'from_date' => $request['from_date'],
         'to_date' => $request['to_date'],
       ]);
+      if (Auth::user()->hasRole("Head of Department"))
+      {
+        return redirect()->route('subsistencerequisitions.inbox');
+      }
       return redirect()->route('subsistencerequisitions');
     }
 

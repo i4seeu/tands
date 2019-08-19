@@ -47,4 +47,10 @@ Route::prefix('subsistencerequisitions')->group(function(){
   Route::get('outbox', 'SubsistenceRequisitionController@outbox')->name('subsistencerequisitions.outbox');
   Route::post('approve/{id}', 'SubsistenceRequisitionController@approve')->name('subsistencerequisitions.approve');
   Route::post('disapprove/{id}', 'SubsistenceRequisitionController@disapprove')->name('subsistencerequisitions.disapprove');
+  Route::get('/{id}', 'SubsistenceRequisitionController@show')->name('subsistencerequisitions.show');
+});
+Route::prefix('settings')->group(function () {
+  Route::get('/', 'SettingsController@index')->name('settings');
+  Route::resource('departments', 'DepartmentController');
+  Route::resource('cartypes', 'CarTypeController');
 });

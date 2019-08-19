@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
 use Illuminate\Http\Request;
 
-class DepartmentController extends Controller
+class SettingsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-      $departments = Department::paginate(15);
-      return view('settings.departments.index',compact('departments'));
+        return view('settings.index');
     }
 
     /**
@@ -25,7 +23,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-      return view('settings.departments.create');
+        //
     }
 
     /**
@@ -36,17 +34,16 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-      Department::create($request->all());
-      return redirect()->route('departments.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Department  $department
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Department $department)
+    public function show($id)
     {
         //
     }
@@ -54,37 +51,34 @@ class DepartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Department  $department
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-      $department = Department::findOrFail($id);
-      return view('settings.departments.edit', compact('department')) ;
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Department  $department
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-      Department::findOrFail($id)->update($request->all());
-      return redirect()->route('departments.index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Department  $department
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-      Department::findOrFail($id)->delete();
-      return redirect()->route('departments.index');
+        //
     }
 }
