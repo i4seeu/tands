@@ -169,15 +169,15 @@ class SubsistenceRequisitionController extends Controller
       $user_id = Auth::user()->id;
       $stage = 1;
       if (Auth::user()->hasRole('Head of Department')){
-          $stage = 2;
+          $stage = 1;
       }
       else if(Auth::user()->hasRole('HR Officer'))
       {
-          $stage = 3;
+          $stage = 2;
       }
       else if(Auth::user()->hasRole('Finance Officer'))
       {
-          $stage = 4;
+          $stage = 3;
       }
       RequisitionProcessing::create([
         'comment'    => $request['comment'],
@@ -201,16 +201,14 @@ class SubsistenceRequisitionController extends Controller
       ]);
       $user_id = Auth::user()->id;
       $stage = 1;
-      if (Auth::user()->hasRole('Head of Department')){
-          $stage = 2;
-      }
-      else if(Auth::user()->hasRole('HR Officer'))
+
+      if(Auth::user()->hasRole('HR Officer'))
       {
-          $stage = 3;
+          $stage = 2;
       }
       else if(Auth::user()->hasRole('Finance Officer'))
       {
-          $stage = 4;
+          $stage = 3;
       }
       RequisitionProcessing::create([
         'comment'    => $request['comment'],

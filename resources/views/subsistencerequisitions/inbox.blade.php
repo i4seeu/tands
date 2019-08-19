@@ -49,6 +49,9 @@
               <td class="right">
                   <a href="#"><button class="btn btn-sm btn-just-icon btn-secondary" data-item="{{ route('subsistencerequisitions.approve', $requisition->id) }}" data-toggle="modal" data-target="#approveModal"><i class="fa fa-check"></i></button></a>
               </td>
+              <td class="right">
+                  <a href="#"><button class="btn btn-sm btn-just-icon btn-secondary" data-item="{{ route('subsistencerequisitions.disapprove', $requisition->id) }}" data-toggle="modal" data-target="#disapproveModal"><i class="fa fa-close"></i></button></a>
+              </td>
           </tr>
         @endforeach
       </tbody>
@@ -57,4 +60,5 @@
   </div>
 </div>
 @include('partials.feedback.approve-modal')
+@include('partials.feedback.disapprove-modal')
 @endsection

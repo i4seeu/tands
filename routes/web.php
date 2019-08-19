@@ -46,4 +46,5 @@ Route::prefix('subsistencerequisitions')->group(function(){
   Route::get('inbox', 'SubsistenceRequisitionController@inbox')->name('subsistencerequisitions.inbox');
   Route::get('outbox', 'SubsistenceRequisitionController@outbox')->name('subsistencerequisitions.outbox');
   Route::post('approve/{id}', 'SubsistenceRequisitionController@approve')->name('subsistencerequisitions.approve');
+  Route::post('disapprove/{id}', 'SubsistenceRequisitionController@disapprove')->name('subsistencerequisitions.disapprove');
 });
