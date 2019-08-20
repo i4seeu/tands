@@ -66,9 +66,11 @@ class SubsistenceRequisitionController extends Controller
      * @param  \App\SubsistenceRequisition  $subsistenceRequisition
      * @return \Illuminate\Http\Response
      */
-    public function show(SubsistenceRequisition $subsistenceRequisition)
+    public function show(Request $request,$id)
     {
-        //
+      $request->user()->authorizeRoles(['Member']);
+      $requisition = SubsistenceRequisition::findOrFail($id);
+      return view('subsistencerequisitions.show', compact('requisition')) ;
     }
 
     /**

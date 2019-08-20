@@ -53,13 +53,14 @@
               <td>Processed</td>
               @endif
               <td class="right">
+                 <a href="{{ route('subsistencerequisitions.show', $requisition->id) }}"><button class="btn btn-sm btn-just-icon btn-secondary"><i class="fa fa-eye"></i></button></a>
                   @if(($requisition->current_stage == 1) && !(auth()->user()->hasRole('System Administrator')))
                   <a href="{{ route('subsistencerequisitions.edit', $requisition->id) }}"><button class="btn btn-sm btn-just-icon btn-secondary"><i class="fa fa-edit"></i></button></a>
                   @if(auth()->user()->id == $requisition->user_id)
                   <button class="btn btn-sm btn-just-icon btn-secondary" data-item="{{ route('subsistencerequisitions.destroy', $requisition->id) }}" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></button>
                   @endif
                   @endif
-                  
+
               </td>
           </tr>
         @endforeach

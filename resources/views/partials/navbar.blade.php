@@ -6,7 +6,7 @@
   -->
     <div class="logo">
       <a href="#" class="simple-text logo-normal">
-          Logo
+          <img src="{{asset('img/logo.jpg')}}" alt="Logo" height="150px">
       </a>
     </div>
     <div class="sidebar-wrapper">

@@ -6,26 +6,27 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card card-profile">
-          <div class="card-avatar">
+          <div class="">
             <a href="#pablo">
-              <img class="img" src="{{asset('img/faces/marc.jpg')}}" />
+               <h3>Requisition Approval Trail</h3>
             </a>
           </div>
           <div class="card-body">
-            <a href="{{ route('users.edit', $user->id) }}"><button class="btn btn-secondary"><i class="fa fa-edit"></i></button></a>
-            @if(auth()->user()->id)
-            <button class="btn btn-secondary" data-item="{{ route('users.destroy', $user->id) }}" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></button>
-            @endif
-            <h6 class="card-category text-gray">{{$user->first_name}}  {{$user->last_name}}</h6>
-            <p class="card-description">
-              <b>Email :</b> {{$user->email}} |   <b>Department :</b> {{$user->department->name}}
-            </p>
-            <p class="card-description">
-              <b>Role :</b> {{$user->roles->first->name->name}}
+                @foreach($requisition->requisitionProcessings as $process)
+                   <div class="row">
 
-            </p>
-            <button class="btn btn-primary col-md-1" onclick = window.history.back();>Back</button>
-
+                      <div class="col-md-12">
+                          {{$process->user->roles->first()->name}} <br>
+                          <b>{{$process->user->first_name}} {{$process->user->last_name}}</b><br>
+                          <em>{{$process->action}}</em><br>
+                          {{$process->created_at}} <br>
+                          " {{$process->comment}} " <br>
+                          &darr;
+                          <hr>
+                      </div>
+                      
+                   </div>
+                @endforeach
           </div>
 
         </div>

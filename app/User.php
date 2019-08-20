@@ -102,6 +102,11 @@ class User extends Authenticatable
 
         return $this->hasMany('App\TransportRequisition');
     }
+    public function requisitionProcessings()
+    {
+
+        return $this->hasMany('App\RequisitionProcessing');
+    }
     public function subsistenceRequisitions()
     {
 

@@ -11,4 +11,9 @@ class SubsistenceRequisition extends Model
   {
     return $this->belongsTo('App\User');
   }
+  public function requisitionProcessings()
+  {
+
+      return $this->hasMany('App\RequisitionProcessing','requisition_id');
+  }
 }
