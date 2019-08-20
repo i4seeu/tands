@@ -58,6 +58,10 @@ class RequisitionController extends Controller
        */
       public function store(Request $request)
       {
+          $this->validate($request,[
+             'date_required'        => 'date_format:Y-m-d|after:today',
+             'time_back'          => 'date_format:Y-m-d|after:yesterday',
+          ]);
           $user_id = Auth::user()->id;
           $transport_requisition =TransportRequisition::create([
             'contact_no'     => $request['contact_no'],
@@ -92,6 +96,10 @@ class RequisitionController extends Controller
        */
       public function update(Request $request, $id)
       {
+        $this->validate($request,[
+           'date_required'        => 'date_format:Y-m-d|after:today',
+           'time_back'          => 'date_format:Y-m-d|after:yesterday',
+        ]);
         TransportRequisition::findOrFail($id)->update([
           'contact_no'     => $request['contact_no'],
           'description'    => $request['description'],

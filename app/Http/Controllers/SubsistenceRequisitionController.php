@@ -48,6 +48,11 @@ class SubsistenceRequisitionController extends Controller
      */
     public function store(Request $request)
     {
+      //dd($request->from_date);
+      $this->validate($request,[
+         'from_date'        => 'date_format:Y-m-d|after:today',
+         'to_date'          => 'date_format:Y-m-d|after:from_date',
+      ]);
       $user_id = Auth::user()->id;
       $transport_requisition = SubsistenceRequisition::create([
         'description'    => $request['description'],
@@ -94,6 +99,10 @@ class SubsistenceRequisitionController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $this->validate($request,[
+         'from_date'        => 'date_format:Y-m-d|after:today',
+         'to_date'          => 'date_format:Y-m-d|after:from_date',
+      ]);
       SubsistenceRequisition::findOrFail($id)->update([
         'description'    => $request['description'],
         'no_days'     => $request['no_days'],
